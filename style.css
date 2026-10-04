@@ -1,0 +1,309 @@
+/* Student Task Manager */
+
+/* Color palette */
+:root {
+    --bg: #f5f6f2;
+    --surface: #ffffff;
+    --text: #242c35;
+    --muted: #737e87;
+    --accent: #426b63;
+    --accent-hover: #34564f;
+    --accent-light: #eaf1ed;
+    --border: #e3e8e4;
+    --danger: #b64d4d;
+    --danger-light: #fbefed;
+    --success: #39775a;
+    --shadow: 0 5px 20px rgba(35, 55, 45, 0.06);
+}
+
+/* Base */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    padding: 56px 24px;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+    line-height: 1.6;
+}
+
+/* Heading and introduction */
+h1 {
+    margin: 0 auto 8px;
+    color: var(--text);
+    font-size: clamp(2rem, 5vw, 2.7rem);
+    font-weight: 750;
+    letter-spacing: -1.2px;
+    line-height: 1.2;
+    text-align: center;
+}
+
+body > p {
+    margin: 0 auto 32px;
+    color: var(--muted);
+    font-size: 1rem;
+    text-align: center;
+}
+
+/* Task form */
+#task-form {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto 34px;
+    padding: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+}
+
+#task-form label {
+    color: var(--text);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+#task-form input,
+#task-form textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: #fbfcfa;
+    color: var(--text);
+    font: inherit;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#task-form input {
+    min-height: 46px;
+}
+
+#task-form textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+#task-form input:focus,
+#task-form textarea:focus,
+#task-search:focus,
+.task-search:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(66, 107, 99, 0.12);
+}
+
+/* Buttons */
+button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    padding: 9px 16px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font: inherit;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+#task-form button[type="submit"] {
+    align-self: flex-start;
+    min-width: 115px;
+    margin-top: 8px;
+    background: var(--accent);
+    color: white;
+}
+
+#task-form button[type="submit"]:hover {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+}
+
+button:focus-visible {
+    outline: 3px solid rgba(66, 107, 99, 0.3);
+    outline-offset: 3px;
+}
+
+/* Task list */
+.task-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    width: 100%;
+    max-width: 950px;
+    margin: 0 auto;
+}
+
+/* Task cards */
+.task-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 0;
+    padding: 21px;
+    overflow-wrap: anywhere;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+    transition: border-color 0.2s, transform 0.2s;
+}
+
+.task-card:hover {
+    border-color: #c7d5ce;
+    transform: translateY(-2px);
+}
+
+.task-card h2,
+.task-card__title {
+    color: var(--text);
+    font-size: 1.05rem;
+    font-weight: 650;
+    line-height: 1.4;
+}
+
+.task-card p,
+.task-card__description {
+    color: var(--muted);
+    font-size: 0.92rem;
+}
+
+/* Card actions */
+.task-card__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 6px;
+}
+
+.task-card__actions button {
+    min-height: 36px;
+    padding: 7px 12px;
+    font-size: 0.83rem;
+}
+
+.task-card .complete-btn {
+    background: var(--accent-light);
+    color: var(--success);
+}
+
+.task-card .complete-btn:hover {
+    background: #dcebe1;
+}
+
+.task-card .delete-btn {
+    background: var(--danger-light);
+    color: var(--danger);
+}
+
+.task-card .delete-btn:hover {
+    background: #f5dfdc;
+}
+
+/* Completed tasks */
+.task-card.completed {
+    background: #f9fbf9;
+}
+
+.task-card.completed h2,
+.task-card.completed .task-card__title {
+    color: var(--muted);
+    text-decoration: line-through;
+}
+
+/* Optional empty state */
+.empty-state {
+    grid-column: 1 / -1;
+    padding: 30px 20px;
+    border: 1px dashed #cbd5ce;
+    border-radius: 12px;
+    color: var(--muted);
+    text-align: center;
+}
+
+/* Optional search field */
+#task-search,
+.task-search {
+    display: block;
+    width: 100%;
+    max-width: 950px;
+    min-height: 44px;
+    margin: 0 auto 18px;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: var(--surface);
+    color: var(--text);
+    font: inherit;
+    outline: none;
+}
+
+/* Tablet */
+@media (max-width: 760px) {
+    body {
+        padding: 40px 20px;
+    }
+
+    .task-list {
+        grid-template-columns: 1fr;
+        max-width: 650px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    body {
+        padding: 28px 15px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    body > p {
+        margin-bottom: 25px;
+        font-size: 0.93rem;
+    }
+
+    #task-form {
+        gap: 10px;
+        margin-bottom: 26px;
+        padding: 20px 17px;
+    }
+
+    #task-form button[type="submit"] {
+        width: 100%;
+    }
+
+    .task-card {
+        padding: 17px;
+    }
+
+    .task-card__actions button {
+        flex: 1;
+    }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto;
+        transition: none;
+    }
+}

@@ -1,8 +1,9 @@
-# Student Task Manager
+
+# Student Task Management System
 
 ## 1. Project Description
 
-Student Task Manager is a simple web application designed to help students organize and manage their daily tasks in one place.
+The **Student Task Manager** is a lightweight, user-friendly web application built to help students manage their busy schedules. It empowers users to stay organized by tracking daily tasks, managing assignments, and monitoring progress through a clean and responsive user interface.
 
 ## 2. Team Members
 
@@ -88,4 +89,8 @@ Screenshots of the project interface, Git commands, branches, Issues, Pull Reque
 ## 12. Contributors
 
 * Mehreen Naz
+<<<<<<< HEAD
 * Wardah Zubair
+=======
+* Wardah Zubair
+>>>>>>> origin/feature/task-style

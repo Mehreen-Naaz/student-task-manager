@@ -2,18 +2,23 @@
 
 /* Color palette */
 :root {
-    --bg: #f5f6f2;
+    --bg: #fdf7fa;
     --surface: #ffffff;
-    --text: #242c35;
-    --muted: #737e87;
-    --accent: #426b63;
-    --accent-hover: #34564f;
-    --accent-light: #eaf1ed;
-    --border: #e3e8e4;
-    --danger: #b64d4d;
-    --danger-light: #fbefed;
-    --success: #39775a;
-    --shadow: 0 5px 20px rgba(35, 55, 45, 0.06);
+    --text: #3f3a46;
+    --muted: #817a87;
+
+    --accent: #8b7bb8;
+    --accent-hover: #7565a5;
+    --accent-light: #f0ecf8;
+
+    --border: #eee7ef;
+
+    --danger: #c97878;
+    --danger-light: #fdf0f1;
+
+    --success: #719b83;
+
+    --shadow: 0 8px 24px rgba(100, 82, 110, 0.08);
 }
 
 /* Base */
@@ -26,20 +31,24 @@
 body {
     min-height: 100vh;
     padding: 56px 24px;
-    background: var(--bg);
+   background:
+    radial-gradient(circle at 10% 10%, rgba(242, 218, 232, 0.35), transparent 28%),
+    radial-gradient(circle at 90% 15%, rgba(221, 215, 242, 0.35), transparent 28%),
+    var(--bg);
     color: var(--text);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
         sans-serif;
     line-height: 1.6;
+    
 }
 
 /* Heading and introduction */
 h1 {
     margin: 0 auto 8px;
-    color: var(--text);
+    color: #51485c;
     font-size: clamp(2rem, 5vw, 2.7rem);
-    font-weight: 750;
-    letter-spacing: -1.2px;
+    font-weight: 700;
+   letter-spacing: -0.8px;
     line-height: 1.2;
     text-align: center;
 }
@@ -59,11 +68,11 @@ body > p {
     width: 100%;
     max-width: 650px;
     margin: 0 auto 34px;
-    padding: 28px;
+    padding: 30px;
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 16px;
-    box-shadow: var(--shadow);
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(100, 82, 110, 0.08);
 }
 
 #task-form label {
@@ -77,13 +86,13 @@ body > p {
     width: 100%;
     padding: 12px 14px;
     border: 1px solid var(--border);
-    border-radius: 9px;
-    background: #fbfcfa;
+    border-radius: 13px;
+    background: #fdfbfe;
     color: var(--text);
     font: inherit;
     font-size: 0.95rem;
     outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
+   transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
 }
 
 #task-form input {
@@ -100,7 +109,10 @@ body > p {
 #task-search:focus,
 .task-search:focus {
     border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(66, 107, 99, 0.12);
+
+    background: #ffffff;
+
+    box-shadow: 0 0 0 4px rgba(139, 123, 184, 0.14);
 }
 
 /* Buttons */
@@ -111,12 +123,12 @@ button {
     min-height: 40px;
     padding: 9px 16px;
     border: 1px solid transparent;
-    border-radius: 8px;
+    border-radius: 12px;
     font: inherit;
     font-size: 0.88rem;
     font-weight: 600;
     cursor: pointer;
-    transition: background 0.2s, transform 0.2s;
+   transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
 }
 
 #task-form button[type="submit"] {
@@ -128,8 +140,14 @@ button {
 }
 
 #task-form button[type="submit"]:hover {
-    background: var(--accent-hover);
-    transform: translateY(-1px);
+   background: var(--accent-hover);
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 6px 14px rgba(117, 101, 165, 0.2);
+    #task-form button[type="submit"]:active {
+    transform: translateY(0);
+}
 }
 
 button:focus-visible {
@@ -153,18 +171,21 @@ button:focus-visible {
     flex-direction: column;
     gap: 12px;
     min-width: 0;
-    padding: 21px;
+    padding: 22px;
     overflow-wrap: anywhere;
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 14px;
-    box-shadow: var(--shadow);
+    border-radius: 17px;
+    box-shadow: 0 8px 24px rgba(100, 82, 110, 0.07);
     transition: border-color 0.2s, transform 0.2s;
 }
 
 .task-card:hover {
-    border-color: #c7d5ce;
-    transform: translateY(-2px);
+    border-color: #ddd5e8;
+
+    transform: translateY(-3px);
+
+    box-shadow: 0 12px 28px rgba(100, 82, 110, 0.11);
 }
 
 .task-card h2,
@@ -197,12 +218,15 @@ button:focus-visible {
 }
 
 .task-card .complete-btn {
-    background: var(--accent-light);
+    background: #edf5ef;
+
     color: var(--success);
 }
 
 .task-card .complete-btn:hover {
-    background: #dcebe1;
+    background: #e1eee5;
+
+    transform: translateY(-2px);
 }
 
 .task-card .delete-btn {
@@ -211,12 +235,16 @@ button:focus-visible {
 }
 
 .task-card .delete-btn:hover {
-    background: #f5dfdc;
+   background: #f9e3e4;
+
+    transform: translateY(-2px);
 }
 
 /* Completed tasks */
 .task-card.completed {
-    background: #f9fbf9;
+    background: #f8fbf9;
+
+    border-color: #e1ebe4;
 }
 
 .task-card.completed h2,
@@ -245,7 +273,7 @@ button:focus-visible {
     margin: 0 auto 18px;
     padding: 10px 14px;
     border: 1px solid var(--border);
-    border-radius: 9px;
+    border-radius: 13px;
     background: var(--surface);
     color: var(--text);
     font: inherit;

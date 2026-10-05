@@ -2,7 +2,7 @@
 
 ## 1. Project Description
 
-Student Task Manager is a simple web application designed to help students organize and manage their daily tasks in one place.
+Student Task Manager is a simple web application that helps students plan, organize and keep track their academic tasks efficiently.
 
 ## 2. Team Members
 

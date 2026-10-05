@@ -19,7 +19,6 @@ The **Student Task Manager** is a lightweight, user-friendly web application bui
 * Search for tasks.
 * Responsive layout for different screen sizes.
 
-*Note: Features will be completed and tested as development progresses.*
 
 ## 4. Technologies
 
@@ -89,8 +88,5 @@ Screenshots of the project interface, Git commands, branches, Issues, Pull Reque
 ## 12. Contributors
 
 * Mehreen Naz
-<<<<<<< HEAD
 * Wardah Zubair
-=======
-* Wardah Zubair
->>>>>>> origin/feature/task-style
+

@@ -74,3 +74,29 @@ taskForm.addEventListener("submit", function(event) {
     // Clear the form
     taskForm.reset();
 });
+
+taskForm.addEventListener("submit", function() {
+
+    const message = document.createElement("p");
+
+    message.textContent = "✨ Task added successfully!";
+
+    message.style.textAlign = "center";
+
+    message.style.color = "#719b83";
+
+    message.style.fontWeight = "600";
+
+    message.style.marginTop = "10px";
+
+    taskForm.appendChild(message);
+
+    // Remove the message after 2 seconds
+
+    setTimeout(function() {
+
+        message.remove();
+
+    }, 2000);
+
+});

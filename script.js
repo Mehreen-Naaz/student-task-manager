@@ -33,6 +33,10 @@ taskForm.addEventListener("submit", function(event) {
     descriptionElement.classList.add("task-card__description");
     descriptionElement.textContent = description;
 
+    // Create task info badge
+    const taskInfo = document.createElement("small");
+    taskInfo.textContent = "New Task";
+
     // Create buttons container
     const actions = document.createElement("div");
     actions.classList.add("task-card__actions");
@@ -67,39 +71,32 @@ taskForm.addEventListener("submit", function(event) {
     // Put everything inside the task card
     taskCard.appendChild(titleElement);
     taskCard.appendChild(descriptionElement);
+    taskCard.appendChild(taskInfo);
     taskCard.appendChild(actions);
 
     // Add the task card to the task list
     taskList.appendChild(taskCard);
 
-    // Clear the form
+    // Clear the form and set focus back to title
     taskForm.reset();
+    taskTitle.focus();
 });
 
+// Success message feedback
 taskForm.addEventListener("submit", function() {
-
     const message = document.createElement("p");
-
     message.textContent = "✨ Task added successfully!";
-
     message.style.textAlign = "center";
-
     message.style.color = "#719b83";
-
     message.style.fontWeight = "600";
-
     message.style.marginTop = "10px";
 
     taskForm.appendChild(message);
 
     // Remove the message after 2 seconds
-
     setTimeout(function() {
-
         message.remove();
-
     }, 2000);
-
 });
 
 taskSearch.addEventListener("input", function() {

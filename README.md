@@ -1,4 +1,4 @@
-# Student Task Manager
+# Student Task Management System
 
 ## 1. Project Description
 

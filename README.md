@@ -1,3 +1,4 @@
+
 # Student Task Management System
 
 ## 1. Project Description
@@ -88,4 +89,8 @@ Screenshots of the project interface, Git commands, branches, Issues, Pull Reque
 ## 12. Contributors
 
 * Mehreen Naz
+<<<<<<< HEAD
 * Wardah Zubair
+=======
+* Wardah Zubair
+>>>>>>> origin/feature/task-style

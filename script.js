@@ -3,6 +3,7 @@ const taskForm = document.getElementById("task-form");
 const taskTitle = document.getElementById("task-title");
 const taskDescription = document.getElementById("task-description");
 const taskList = document.getElementById("task-list");
+const taskSearch = document.getElementById("task-search");
 
 // Add a task when the form is submitted
 taskForm.addEventListener("submit", function(event) {
@@ -99,4 +100,21 @@ taskForm.addEventListener("submit", function() {
 
     }, 2000);
 
+});
+
+taskSearch.addEventListener("input", function() {
+    const searchText = taskSearch.value.toLowerCase();
+
+    const tasks = taskList.querySelectorAll(".task-card");
+
+    tasks.forEach(function(task) {
+        const title = task.querySelector(".task-card__title").textContent.toLowerCase();
+        const description = task.querySelector(".task-card__description").textContent.toLowerCase();
+
+        if (title.includes(searchText) || description.includes(searchText)) {
+            task.style.display = "block";
+        } else {
+            task.style.display = "none";
+        }
+    });
 });

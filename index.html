@@ -10,7 +10,19 @@
     <h1>Student Task Manager</h1>
     <p>Organize your tasks in one place.</p>
 
+    <form id="task-form">
+        <label for="task-title">Task title</label>
+        <input type="text" id="task-title" name="title" placeholder="Enter task title" required>
+
+        <label for="task-description">Description</label>
+        <textarea id="task-description" name="description"></textarea>
+
+        <button type="submit">Add</button>
+    </form>
+    <input type="text" 
+    id="task-search"
+     placeholder="Search tasks">
+     <div id="task-list"></div>
     <script src="script.js"></script>
 </body>
 </html>
-

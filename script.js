@@ -115,3 +115,232 @@ taskSearch.addEventListener("input", function() {
         }
     });
 });
+// ==========================================
+// TASK STATISTICS
+// ==========================================
+
+const taskStatistics = document.createElement("div");
+
+taskStatistics.classList.add("task-statistics");
+
+const totalTasks = document.createElement("p");
+
+totalTasks.classList.add("total-tasks");
+
+const pendingTasks = document.createElement("p");
+
+pendingTasks.classList.add("pending-tasks");
+
+const completedTasks = document.createElement("p");
+
+completedTasks.classList.add("completed-tasks");
+
+taskStatistics.appendChild(totalTasks);
+
+taskStatistics.appendChild(pendingTasks);
+
+taskStatistics.appendChild(completedTasks);
+
+taskList.parentNode.insertBefore(
+    taskStatistics,
+    taskList
+);
+
+
+// ==========================================
+// UPDATE TASK STATISTICS
+// ==========================================
+
+function updateTaskStatistics() {
+
+    const tasks = taskList.querySelectorAll(".task-card");
+
+    const total = tasks.length;
+
+    let completed = 0;
+
+    tasks.forEach(function(task) {
+
+        if (task.classList.contains("completed")) {
+
+            completed++;
+        }
+    });
+
+    const pending = total - completed;
+
+    totalTasks.textContent = "Total Tasks: " + total;
+
+    pendingTasks.textContent = "Pending: " + pending;
+
+    completedTasks.textContent = "Completed: " + completed;
+}
+
+
+// ==========================================
+// UPDATE STATISTICS AFTER ADDING TASK
+// ==========================================
+
+taskForm.addEventListener("submit", function() {
+
+    setTimeout(function() {
+
+        updateTaskStatistics();
+
+    }, 100);
+});
+
+
+// ==========================================
+// UPDATE STATISTICS AFTER COMPLETING TASK
+// ==========================================
+
+taskList.addEventListener("click", function(event) {
+
+    if (event.target.classList.contains("complete-btn")) {
+
+        setTimeout(function() {
+
+            updateTaskStatistics();
+
+        }, 100);
+    }
+});
+
+
+// ==========================================
+// UPDATE STATISTICS AFTER DELETING TASK
+// ==========================================
+
+taskList.addEventListener("click", function(event) {
+
+    if (event.target.classList.contains("delete-btn")) {
+
+        setTimeout(function() {
+
+            updateTaskStatistics();
+
+        }, 100);
+    }
+});
+
+
+// ==========================================
+// INITIAL TASK STATISTICS
+// ==========================================
+
+updateTaskStatistics();
+// ==========================================
+// TASK FILTER BUTTONS
+// ==========================================
+
+// Create filter container
+const filterContainer = document.createElement("div");
+
+filterContainer.classList.add("task-filters");
+
+
+// Create All Tasks button
+const allTasksButton = document.createElement("button");
+
+allTasksButton.textContent = "All Tasks";
+
+allTasksButton.classList.add("filter-btn");
+
+
+// Create Pending Tasks button
+const pendingTasksButton = document.createElement("button");
+
+pendingTasksButton.textContent = "Pending";
+
+pendingTasksButton.classList.add("filter-btn");
+
+
+// Create Completed Tasks button
+const completedTasksButton = document.createElement("button");
+
+completedTasksButton.textContent = "Completed";
+
+completedTasksButton.classList.add("filter-btn");
+
+
+// Add buttons to filter container
+filterContainer.appendChild(allTasksButton);
+
+filterContainer.appendChild(pendingTasksButton);
+
+filterContainer.appendChild(completedTasksButton);
+
+
+// Put filter buttons before the task list
+taskList.parentNode.insertBefore(
+    filterContainer,
+    taskList
+);
+
+
+// ==========================================
+// SHOW ALL TASKS
+// ==========================================
+
+allTasksButton.addEventListener("click", function() {
+
+    const tasks = taskList.querySelectorAll(".task-card");
+
+    tasks.forEach(function(task) {
+
+        task.style.display = "block";
+
+    });
+
+});
+
+
+// ==========================================
+// SHOW PENDING TASKS
+// ==========================================
+
+pendingTasksButton.addEventListener("click", function() {
+
+    const tasks = taskList.querySelectorAll(".task-card");
+
+    tasks.forEach(function(task) {
+
+        if (task.classList.contains("completed")) {
+
+            task.style.display = "none";
+
+        } else {
+
+            task.style.display = "block";
+
+        }
+
+    });
+
+});
+
+
+// ==========================================
+// SHOW COMPLETED TASKS
+// ==========================================
+
+completedTasksButton.addEventListener("click", function() {
+
+    const tasks = taskList.querySelectorAll(".task-card");
+
+    tasks.forEach(function(task) {
+
+        if (task.classList.contains("completed")) {
+
+            task.style.display = "block";
+
+        } else {
+
+            task.style.display = "none";
+
+        }
+
+    });
+
+});

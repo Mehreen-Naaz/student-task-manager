@@ -1,35 +1,117 @@
-const form = document.getElementById("task-form");
-const title = document.getElementById("task-title");
-const description = document.getElementById("task-description");
+// Get the form and other elements from HTML
+const taskForm = document.getElementById("task-form");
+const taskTitle = document.getElementById("task-title");
+const taskDescription = document.getElementById("task-description");
 const taskList = document.getElementById("task-list");
+const taskSearch = document.getElementById("task-search");
 
-form.addEventListener("submit", function(event) {
+// Add a task when the form is submitted
+taskForm.addEventListener("submit", function(event) {
     event.preventDefault();
 
-    if (title.value.trim() === "") {
+    // Get the values entered by the user
+    const title = taskTitle.value.trim();
+    const description = taskDescription.value.trim();
+
+    // Prevent adding a task with an empty title
+    if (title === "") {
         alert("Please enter a task title.");
         return;
     }
 
-    const task = document.createElement("div");
-    task.className = "task-card";
+    // Create the task card
+    const taskCard = document.createElement("div");
+    taskCard.classList.add("task-card");
 
-    const taskTitle = document.createElement("h3");
-    taskTitle.textContent = title.value;
+    // Create task title
+    const titleElement = document.createElement("h2");
+    titleElement.classList.add("task-card__title");
+    titleElement.textContent = title;
 
-    const taskDescription = document.createElement("p");
-    taskDescription.textContent = description.value;
+    // Create task description
+    const descriptionElement = document.createElement("p");
+    descriptionElement.classList.add("task-card__description");
+    descriptionElement.textContent = description;
 
+    // Create task info badge
     const taskInfo = document.createElement("small");
     taskInfo.textContent = "New Task";
 
-    task.appendChild(taskTitle);
-    task.appendChild(taskDescription);
-    task.appendChild(taskInfo);
+    // Create buttons container
+    const actions = document.createElement("div");
+    actions.classList.add("task-card__actions");
 
-    taskList.appendChild(task);
+    // Create Complete button
+    const completeButton = document.createElement("button");
+    completeButton.classList.add("complete-btn");
+    completeButton.textContent = "Complete";
 
-    form.reset();
+    // Create Delete button
+    const deleteButton = document.createElement("button");
+    deleteButton.classList.add("delete-btn");
+    deleteButton.textContent = "Delete";
 
-    title.focus();
+    // Complete button functionality
+    completeButton.addEventListener("click", function() {
+        if (!taskCard.classList.contains("completed")) {
+            taskCard.classList.add("completed");
+            completeButton.textContent = "Completed";
+        }
+    });
+
+    // Delete button functionality
+    deleteButton.addEventListener("click", function() {
+        taskCard.remove();
+    });
+
+    // Put buttons inside the actions container
+    actions.appendChild(completeButton);
+    actions.appendChild(deleteButton);
+
+    // Put everything inside the task card
+    taskCard.appendChild(titleElement);
+    taskCard.appendChild(descriptionElement);
+    taskCard.appendChild(taskInfo);
+    taskCard.appendChild(actions);
+
+    // Add the task card to the task list
+    taskList.appendChild(taskCard);
+
+    // Clear the form and set focus back to title
+    taskForm.reset();
+    taskTitle.focus();
+});
+
+// Success message feedback
+taskForm.addEventListener("submit", function() {
+    const message = document.createElement("p");
+    message.textContent = "✨ Task added successfully!";
+    message.style.textAlign = "center";
+    message.style.color = "#719b83";
+    message.style.fontWeight = "600";
+    message.style.marginTop = "10px";
+
+    taskForm.appendChild(message);
+
+    // Remove the message after 2 seconds
+    setTimeout(function() {
+        message.remove();
+    }, 2000);
+});
+
+taskSearch.addEventListener("input", function() {
+    const searchText = taskSearch.value.toLowerCase();
+
+    const tasks = taskList.querySelectorAll(".task-card");
+
+    tasks.forEach(function(task) {
+        const title = task.querySelector(".task-card__title").textContent.toLowerCase();
+        const description = task.querySelector(".task-card__description").textContent.toLowerCase();
+
+        if (title.includes(searchText) || description.includes(searchText)) {
+            task.style.display = "block";
+        } else {
+            task.style.display = "none";
+        }
+    });
 });
